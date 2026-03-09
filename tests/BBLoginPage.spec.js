@@ -2,6 +2,7 @@ const {test,expect} = require('@playwright/test');
 const {LoginPage} = require('../PageObjects/LoginPage');
 const config = require('../config.js');
 const { count } = require('node:console');
+const { EUM } = require('../PageObjects/EUM.js');
 
 const username =config.username;
 const password = config.password;
@@ -32,6 +33,7 @@ await expect(page).toHaveTitle("BlackBerry AtHoc");
 test ('create a user', async ({page})=>
 {
 const loginPage = new LoginPage(page);
+const eum =new EUM(page);
 loginPage.LaunchApplication();
 loginPage.validLogin(username , password);
 
@@ -41,11 +43,13 @@ await page.locator("#Users").click();
 await page.locator("#NavBar_User_Manager").click();
 
 await page.waitForTimeout(5000);
-await page.locator("#btnNewUser").click();
+eum.CreateUser(user);
+
+/* await page.locator("#btnNewUser").click();
 await page.locator("#LOGIN_ID").fill(user);
 await page.locator("#endUserSave").click();
 
-await page.locator("#lnkUsers").click();
+await page.locator("#lnkUsers").click(); */
 
 await page.reload();
 
@@ -66,6 +70,7 @@ for (let i = 0; i < count; ++i)
     }
    
   }*/
+
  await page.waitForLoadState("networkidle");
   const listitems= page.locator(".table-col.col3.col-second");
   const count =await listitems.locator(".table-truename").count();
