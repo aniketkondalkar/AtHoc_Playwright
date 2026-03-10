@@ -17,6 +17,7 @@ class EUM
         await this.loginID.fill(user);
         await this.saveButton.click();
         await this.UsersLink.click();
+        await this.page.reload();
     }
 }
 module.exports = {EUM};

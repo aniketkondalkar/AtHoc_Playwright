@@ -42,16 +42,10 @@ await page.waitForLoadState("networkidle");
 await page.locator("#Users").click();
 await page.locator("#NavBar_User_Manager").click();
 
-await page.waitForTimeout(5000);
+await page.waitForTimeout(6000);
 eum.CreateUser(user);
 
-/* await page.locator("#btnNewUser").click();
-await page.locator("#LOGIN_ID").fill(user);
-await page.locator("#endUserSave").click();
-
-await page.locator("#lnkUsers").click(); */
-
-await page.reload();
+//await page.reload();
 
 
 /* const listitems = await page.locator(".table-truename").nth(4).textContent();
