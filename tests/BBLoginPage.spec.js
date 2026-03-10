@@ -43,7 +43,7 @@ await page.locator("#Users").click();
 await page.locator("#NavBar_User_Manager").click();
 
 await page.waitForTimeout(6000);
-eum.CreateUser(user);
+await eum.CreateUser(user);
 
 //await page.reload();
 
