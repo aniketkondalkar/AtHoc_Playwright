@@ -18,8 +18,6 @@ const AppURL ="https://iwsweb-pubdev.athocdevo.com/";
 const loginPage = new LoginPage(page);
 
 loginPage.LaunchApplication();
-
-
 loginPage.validLogin(username , password);
 
 //expect(page.locator("#cmdLoginManual")).toBeVisible();
@@ -65,11 +63,13 @@ for (let i = 0; i < count; ++i)
    
   }*/
 
- await page.waitForLoadState("networkidle");
+  await page.waitForLoadState("networkidle");
   const listitems= page.locator(".table-col.col3.col-second");
   const count =await listitems.locator(".table-truename").count();
   console.log(count);
 
+
+  // to verify if the created users is correctly displayed in the users grid 
   for (let i = 0; i < count; ++i) 
   {
     const text = await listitems.locator(".table-truename").nth(i).textContent();
@@ -81,7 +81,7 @@ for (let i = 0; i < count; ++i)
     }
    
   }
-   
+   // verify the text "basic information" is displayed on users profile page.
    await expect(page.getByText("Basic Information")).toBeVisible();
 
 } 
